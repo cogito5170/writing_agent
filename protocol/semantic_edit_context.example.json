@@ -1,0 +1,191 @@
+{
+  "schema": "semantic_edit_context/1",
+
+  "document": {
+    "id": "doc_001",
+    "purpose": "자기소개서",
+    "target": "브랜드 공간디자인 직무",
+    "original_text": "..."
+  },
+
+  "user_feedback": {
+    "raw": "문맥이 안 이어지는 느낌",
+    "intent": {
+      "type": "context_continuity",
+      "meaning": "각 문장과 문단이 독립적으로 읽히며 앞의 내용이 뒤의 내용으로 자연스럽게 이어지지 않음",
+      "confidence": 0.91
+    }
+  },
+
+  "semantic_structure": {
+    "thesis": {
+      "id": "T1",
+      "meaning": "건축에서 배운 설계 능력을 공간과 매장 디자인으로 확장하려는 사람"
+    },
+
+    "units": [
+      {
+        "id": "A",
+        "role": "identity",
+        "meaning": "건축을 공부했지만 공간과 매장 디자인에 더 큰 흥미를 느껴 방향을 전환함"
+      },
+      {
+        "id": "B",
+        "role": "strength",
+        "meaning": "리서치와 컨셉 설정을 통해 설계 방향을 구체화하는 능력"
+      },
+      {
+        "id": "C",
+        "role": "strength",
+        "meaning": "아이디어를 다이어그램과 모델링으로 구현하고 전달하는 능력"
+      },
+      {
+        "id": "D",
+        "role": "strength",
+        "meaning": "색채와 오브제의 관계를 고려하여 공간의 분위기를 구성하는 감각"
+      },
+      {
+        "id": "E",
+        "role": "aspiration",
+        "meaning": "공간과 브랜드 경험을 연결하는 디자이너가 되고자 함"
+      }
+    ]
+  },
+
+  "semantic_relations": [
+    {
+      "from": "A",
+      "to": "B",
+      "relation": "application",
+      "expected": "B가 A에서 선택한 새로운 방향에서 어떻게 활용되는지 설명되어야 함",
+      "observed": "B가 건축 설계 능력 자체를 설명하고 있어 A의 공간·매장 방향과 연결되지 않음",
+      "status": "broken",
+      "confidence": 0.86
+    },
+    {
+      "from": "B",
+      "to": "C",
+      "relation": "process",
+      "expected": "컨셉 설정 → 구현 및 전달의 작업 흐름",
+      "observed": "두 능력이 각각 독립적인 강점처럼 제시됨",
+      "status": "weak",
+      "confidence": 0.71
+    },
+    {
+      "from": "C",
+      "to": "D",
+      "relation": "extension",
+      "expected": "구현 능력에서 공간의 시각적·감각적 구성으로 확장",
+      "observed": "색채와 오브제 이야기가 갑자기 등장함",
+      "status": "weak",
+      "confidence": 0.67
+    },
+    {
+      "from": "D",
+      "to": "E",
+      "relation": "application",
+      "expected": "현재 가진 감각이 지원 직무에서 어떻게 활용될지 연결",
+      "observed": "직무 적용과 포부를 연결하는 설명이 없음",
+      "status": "missing",
+      "confidence": 0.79
+    }
+  ],
+
+  "diagnosis": {
+    "primary": {
+      "type": "broken_semantic_chain",
+      "location": ["A", "B"],
+      "meaning": "글의 핵심 전환점인 건축→공간·매장 방향 전환이 이후 강점들과 연결되지 않음",
+      "severity": "P0",
+      "confidence": 0.86
+    },
+
+    "secondary": [
+      {
+        "type": "list_like_structure",
+        "location": ["B", "C"],
+        "severity": "P1",
+        "meaning": "강점들이 하나의 작업 과정이 아니라 독립적인 항목처럼 읽힘",
+        "confidence": 0.71
+      },
+      {
+        "type": "topic_jump",
+        "location": ["C", "D"],
+        "severity": "P1",
+        "meaning": "구현·소통에서 색채·오브제로 의미적 이동이 설명되지 않음",
+        "confidence": 0.67
+      },
+      {
+        "type": "missing_closure",
+        "location": ["D", "E"],
+        "severity": "P1",
+        "meaning": "앞에서 제시한 강점들이 지원 직무와 연결되어 글을 닫지 못함",
+        "confidence": 0.79
+      }
+    ]
+  },
+
+  "repair_intent": [
+    {
+      "location": ["A", "B"],
+      "goal": "새로운 진로 방향과 기존 설계 역량의 관계를 명시한다",
+      "semantic_operation": "connect",
+      "preserve": [
+        "기존 건축 경험",
+        "공간·매장 디자인으로의 방향 전환"
+      ],
+      "forbid": [
+        "새로운 경험 추가",
+        "새로운 성과 추가",
+        "실제로 하지 않은 직무 경험 추가"
+      ]
+    },
+    {
+      "location": ["B", "C"],
+      "goal": "기획 → 구현 → 전달이라는 작업 흐름을 드러낸다",
+      "semantic_operation": "sequence"
+    },
+    {
+      "location": ["D", "E"],
+      "goal": "현재의 디자인 감각이 지원 직무에서 어떻게 활용될지 연결한다",
+      "semantic_operation": "bridge"
+    }
+  ],
+
+  "preservation_constraints": {
+    "facts": "immutable",
+    "experiences": "immutable",
+    "achievements": "immutable",
+    "intent": "preserve",
+    "voice": "preserve",
+    "meaning": "preserve",
+    "style": "may_change_only_when_required_for_flow"
+  },
+
+  "editor_authority": {
+    "allowed": [
+      "reorder",
+      "merge",
+      "split",
+      "remove_redundancy",
+      "clarify_reference",
+      "add_transition",
+      "rephrase",
+      "change_paragraph_boundary"
+    ],
+    "not_allowed": [
+      "invent_fact",
+      "invent_experience",
+      "invent_result",
+      "invent_motivation",
+      "change_claim",
+      "change_user_intent"
+    ]
+  },
+
+  "priority": {
+    "strategy": "fix_highest_impact_breaks_first",
+    "max_major_repairs": 3,
+    "avoid_overediting": true
+  }
+}

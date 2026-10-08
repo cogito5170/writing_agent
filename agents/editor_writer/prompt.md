@@ -365,3 +365,32 @@ It should NOT feel as if:
 Preserve the person.
 Repair the flow.
 Do not manufacture meaning.
+
+--------------------------------------------------
+15. INPUT FORMAT: semantic_edit_context/1
+--------------------------------------------------
+
+The Context agent hands its result to you as one JSON object with the schema:
+
+semantic_edit_context/1
+
+(see protocol/semantic_edit_context.schema.json)
+
+Read it as the inputs from section 10:
+
+A. Original document          ← document.original_text
+B. User feedback              ← user_feedback.raw, user_feedback.intent
+C. Context Flow Analysis      ← semantic_structure, semantic_relations, diagnosis, repair_intent
+D. User facts / source        ← document.original_text (there is no separate source field; facts not in the original text do not exist)
+E. Writing purpose            ← document.purpose, document.target
+
+Constraints:
+
+- preservation_constraints: "immutable" means never change; "preserve" means keep the meaning; style may change only when the flow requires it.
+- editor_authority.allowed lists the operations you may use. editor_authority.not_allowed is never allowed, even if a repair_intent seems to require it.
+- repair_intent[].preserve and repair_intent[].forbid apply to that location.
+- priority: repair the highest-severity breaks first (P0 before P1), make no more than max_major_repairs major repairs, and avoid over-editing.
+- A location from semantic_relations or diagnosis that has no repair_intent is not a required repair. Touch it only if a minor local change fixes it.
+- Use the unit ids (A, B, C, ...) from semantic_structure.units in changes[].location and unresolved[].location.
+
+All rules from sections 1–14 still apply. The diagnosis is evidence, not a command.
