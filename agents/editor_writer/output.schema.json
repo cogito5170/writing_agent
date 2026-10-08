@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "editor_writer_result/1",
+  "title": "Editor_Writer Agent result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "revision_summary", "changes", "preserved", "unresolved", "final_document"],
+  "properties": {
+    "schema": { "const": "editor_writer_result/1" },
+    "revision_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["objective", "revision_scope", "overall_reason"],
+      "properties": {
+        "objective": { "type": "string" },
+        "revision_scope": { "enum": ["minimal", "moderate", "substantial"] },
+        "overall_reason": { "type": "string" }
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["location", "problem", "action", "reason"],
+        "properties": {
+          "location": { "type": "string" },
+          "problem": { "type": "string" },
+          "action": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "preserved": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["user_facts", "user_intent", "user_voice"] }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["location", "reason"],
+        "properties": {
+          "location": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "final_document": { "type": "string" }
+  }
+}
