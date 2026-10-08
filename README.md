@@ -20,4 +20,4 @@ It contains the document, the interpreted user feedback, the semantic units (A, 
 
 ## Session protocol (ga-sdk wire)
 
-[`protocol/ga_session_protocol.md`](protocol/ga_session_protocol.md): how the 혁주 작업 공간 session hands user requests to the analysis and editor sessions as ga-sdk `directive/2` / `report/2` / `notify/1` forms over `send_message`. Payloads travel as sha-pinned files in gentleMonster `docs/portfolio/agent_log/`. Validated example heads are in [`protocol/ga_examples/`](protocol/ga_examples/).
+The 혁주 작업 공간 session runs the canonical protocol (gentleMonster `claude/clever-knuth-1dezlo`, `docs/portfolio/agent_protocol.md`): ga-sdk `directive/2` / `report/2` over `send_message`. [`protocol/ga_session_protocol.md`](protocol/ga_session_protocol.md) covers the editor session's side. Validated example reports are in [`protocol/ga_examples/`](protocol/ga_examples/).

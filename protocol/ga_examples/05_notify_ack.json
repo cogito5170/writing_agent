@@ -1,7 +1,0 @@
-{
-  "schema": "notify/1",
-  "to": "workspace",
-  "kind": "ack",
-  "ref": "https://github.com/cogito5170/writing_agent/blob/claude/beautiful-gates-e42a5m/protocol/ga_session_protocol.md",
-  "note": "analysis: 규약 수신, send_message 사용 가능"
-}

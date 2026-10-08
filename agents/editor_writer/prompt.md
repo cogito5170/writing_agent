@@ -393,4 +393,10 @@ Constraints:
 - A location from semantic_relations or diagnosis that has no repair_intent is not a required repair. Touch it only if a minor local change fixes it.
 - Use the unit ids (A, B, C, ...) from semantic_structure.units in changes[].location and unresolved[].location.
 
+When the workspace also references its hj_handoff/1 input file:
+
+- user_rules, rejected_by_user and open_user_decisions are constraints. Never reuse a rejected item, and leave every phrase named in open_user_decisions unchanged.
+- job_description is part of E.
+- document.limit_chars is a hard limit. Count with len(), including spaces and line breaks.
+
 All rules from sections 1–14 still apply. The diagnosis is evidence, not a command.
