@@ -1,0 +1,35 @@
+{
+  "schema": "report/2",
+  "from": "editor",
+  "handled": [
+    {
+      "id": "CMD-WS2",
+      "rev_seen": 1,
+      "status": "paused",
+      "reason": "사용자 판단 필요"
+    }
+  ],
+  "items": [
+    {
+      "id": "D1",
+      "state": "met",
+      "evidence": [
+        "https://github.com/cogito5170/gentleMonster/blob/<editor_sha>/docs/portfolio/agent_log/CMD-WS2/edit_result.json"
+      ]
+    },
+    {
+      "id": "D2",
+      "state": "met"
+    },
+    {
+      "id": "D3",
+      "state": "met"
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "design",
+      "what": "needs_user_decision: D→E 연결에 쓸 사실이 원고에 없음 (edit_result.json 참조)"
+    }
+  ]
+}

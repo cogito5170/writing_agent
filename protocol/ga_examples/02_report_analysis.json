@@ -1,0 +1,35 @@
+{
+  "schema": "report/2",
+  "from": "analysis",
+  "handled": [
+    {
+      "id": "CMD-WS1",
+      "rev_seen": 1,
+      "status": "done"
+    }
+  ],
+  "commits": [
+    {
+      "repo": "cogito5170/gentleMonster",
+      "branch": "claude/modest-cannon-ha8zs3",
+      "sha": "0123abc"
+    }
+  ],
+  "items": [
+    {
+      "id": "D1",
+      "state": "met",
+      "evidence": [
+        "https://github.com/cogito5170/gentleMonster/blob/<analysis_sha>/docs/portfolio/agent_log/CMD-WS1/analysis_result.json"
+      ]
+    },
+    {
+      "id": "D2",
+      "state": "met"
+    },
+    {
+      "id": "D3",
+      "state": "met"
+    }
+  ]
+}

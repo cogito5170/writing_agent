@@ -1,0 +1,41 @@
+{
+  "schema": "directive/2",
+  "id": "CMD-WS2",
+  "rev": 1,
+  "to": "editor",
+  "after": [
+    "CMD-WS1"
+  ],
+  "goal": "analysis 진단에 따라 self_intro 원고의 연결을 부분 수정하고 semantic_edit_result/1을 돌려준다 (task: revise)",
+  "why": "사용자 피드백: 문맥이 안 이어지는 느낌. CMD-WS1 진단 결과",
+  "scope": [
+    {
+      "id": "S1",
+      "text": "refs[1]의 repair_intent 위치만. editor_authority 안에서만"
+    },
+    {
+      "id": "S2",
+      "text": "원문·사실·거절 목록은 refs[0]의 analysis_request/1"
+    }
+  ],
+  "done_when": [
+    {
+      "id": "D1",
+      "text": "agent_log/CMD-WS2/edit_result.json 이 semantic_edit_result/1 이고 커밋·push 됨"
+    },
+    {
+      "id": "D2",
+      "text": "char_count.total ≤ limit (공백·줄바꿈 포함 len())"
+    },
+    {
+      "id": "D3",
+      "text": "fact_check.new_facts_added=false, 거절된 소재·표현 미사용"
+    }
+  ],
+  "refs": [
+    "https://github.com/cogito5170/gentleMonster/blob/<workspace_sha>/docs/portfolio/agent_log/CMD-WS1/analysis_request.json",
+    "https://github.com/cogito5170/gentleMonster/blob/<analysis_sha>/docs/portfolio/agent_log/CMD-WS1/analysis_result.json",
+    "https://github.com/cogito5170/writing_agent/blob/claude/beautiful-gates-e42a5m/protocol/ga_session_protocol.md"
+  ],
+  "change_size": "implementation"
+}
