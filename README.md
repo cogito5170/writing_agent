@@ -6,6 +6,7 @@ writing_agent
 | Agent | Prompt | Output schema | Input |
 | --- | --- | --- | --- |
 | Editor_Writer | [`agents/editor_writer/prompt.md`](agents/editor_writer/prompt.md) | [`editor_writer_result/1`](agents/editor_writer/output.schema.json) | [`semantic_edit_context/1`](protocol/semantic_edit_context.schema.json) from the Context agent |
+| Editor_Writer (cover letters, §16) | same | [`editor_options/1`](agents/editor_writer/options.schema.json) (default for cover letters) | hub `hj_handoff/1` input + gentleMonster `docs/portfolio/PROCESS.md` |
 
 The Editor_Writer agent repairs the flow between ideas (A→B→C→D) without inventing facts or over-polishing the writer's voice.
 

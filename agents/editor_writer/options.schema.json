@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "editor_options/1",
+  "title": "Editor_Writer Agent result — 대안 방식 (자기소개서 기본)",
+  "description": "PROCESS.md §5 문장 대안 루프의 결과. target 밖은 그대로 둔 전문(full)을 대안마다 싣는다. 지시가 더 요구한 필드(예: popup_ok, room_after, effect_on_step3)는 덧붙일 수 있다. 고친 문서 한 벌을 내는 지시는 editor_writer_result/1(output.schema.json)을 쓴다.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["options", "recommend", "notes"],
+  "properties": {
+    "schema": { "const": "editor_options/1" },
+    "options": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["id", "type", "text", "chars", "one_line", "full", "full_chars", "delta"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "description": "대안의 유형(짜임). 대안끼리 서로 달라야 한다." },
+          "text": { "type": "string", "description": "target을 바꿀 문장(삭제 대안은 빈 문자열)" },
+          "chars": { "type": "integer", "minimum": 0, "description": "len(text), 공백·줄바꿈 포함" },
+          "one_line": { "type": "string", "description": "한 줄 설명" },
+          "full": { "type": "string", "description": "대안을 넣은 전문. target 밖은 원문 그대로" },
+          "full_chars": { "type": "integer", "minimum": 0, "description": "len(full), 공백·줄바꿈 포함" },
+          "delta": { "type": "integer", "description": "full_chars − 원문 글자 수" }
+        }
+      }
+    },
+    "recommend": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "why"],
+      "properties": {
+        "id": { "type": "string" },
+        "why": { "type": "string" }
+      }
+    },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "blocked_questions": {
+      "type": "array",
+      "description": "사실이 없어 막힌 곳. 임시 문장을 두고 사용자에게 물을 질문.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "where", "ask", "placeholder"],
+        "properties": {
+          "id": { "type": "string" },
+          "where": { "type": "string" },
+          "ask": { "type": "string" },
+          "placeholder": { "type": "string" }
+        }
+      }
+    }
+  }
+}

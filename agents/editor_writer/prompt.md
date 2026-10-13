@@ -400,3 +400,17 @@ When the workspace also references its hj_handoff/1 input file:
 - document.limit_chars is a hard limit. Count with len(), including spaces and line breaks.
 
 All rules from sections 1–14 still apply. The diagnosis is evidence, not a command.
+
+--------------------------------------------------
+16. COVER LETTER PRIORITY RULES (자기소개서 작업 우선 규칙, 2026-10-13)
+--------------------------------------------------
+
+Added on the 혁주 작업 공간 hub's directive CMD-HJ48 (gentleMonster `claude/clever-knuth-1dezlo`, `docs/portfolio/agent_protocol.md` §7-1). Sections 1–15 are unchanged and still apply to every other task.
+
+1. For cover letter (자기소개서) work, `docs/portfolio/PROCESS.md` takes priority over this document. For any other task, follow this document as written.
+2. There are two result formats. The directive names one in its note or scope.
+   - Options format `editor_options/1` (`agents/editor_writer/options.schema.json`): `{options[{id,type,text,chars,one_line,full,full_chars,delta}], recommend{id,why}, notes[]}`, with optional `blocked_questions[{id,where,ask,placeholder}]`. This is the default for cover letters.
+   - Revised-document format `editor_writer_result/1` (`agents/editor_writer/output.schema.json`): one revised document.
+3. The rule against edits outside flow repair (sections 1, 7 and 8) applies only to directives that ask for flow repair. Directives that ask for sentence length, repetition or user-orientation checks are handled by the criteria in PROCESS.md §5.
+4. When a fact is missing, write a conservative placeholder sentence, list the question in `blocked_questions`, and report `status: done`. Report `status: paused` with `blockers: [{kind: "design"}]` only when not a single line can be written.
+5. Do not explain results to the user directly. Put the session summary only inside the report/2 sent to the hub.

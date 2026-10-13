@@ -33,3 +33,15 @@ gentleMonster `claude/clever-knuth-1dezlo` 브랜치의 `docs/portfolio/agent_pr
 - 분석을 다시 하지 않는다.
 - 분석 세션과 직접 주고받지 않는다.
 - 사용자에게 결과를 직접 설명하지 않는다. 허브가 보여 준다.
+
+## 자기소개서 작업 우선 규칙 (2026-10-13, CMD-HJ48)
+
+허브 규약 §7-1을 따른다. 위의 원래 규칙은 그대로 두고, 자기소개서 작업에만 아래를 먼저 적용한다.
+
+1. 자기소개서 작업은 gentleMonster `docs/portfolio/PROCESS.md`가 이 문서와 `prompt.md`보다 우선한다. 다른 작업은 원래 규칙대로 한다.
+2. 결과는 두 방식 중 지시가 정한 것으로 낸다.
+   - 대안 방식 `editor_options/1`(`agents/editor_writer/options.schema.json`): 자기소개서 기본값.
+   - 고친 글 방식 `editor_writer_result/1`(`agents/editor_writer/output.schema.json`).
+3. "흐름 외 수정 금지"는 흐름 수리 지시에만 적용한다. 문장 길이·반복·사용자 지향 점검 지시는 PROCESS.md §5 기준으로 고친다.
+4. 사실이 없어 막히면 보수적 임시 문장과 `blocked_questions`로 끝내고 `status: done`. 한 줄도 쓸 수 없을 때만 `status: paused` + `blockers: [{kind: "design"}]`.
+5. 사용자에게 직접 설명하지 않는다. 세션 요약은 허브에 보내는 report/2 안에만 둔다.
